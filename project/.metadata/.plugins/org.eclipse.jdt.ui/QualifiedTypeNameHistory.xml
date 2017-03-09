@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
+<fullyQualifiedTypeName name="java.io.PrintWriter"/>
+<fullyQualifiedTypeName name="bean.Person"/>
+<fullyQualifiedTypeName name="com.alibaba.fastjson.JSON"/>
+<fullyQualifiedTypeName name="java.util.concurrent.ThreadPoolExecutor"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="java.util.concurrent.TimeUnit"/>
+<fullyQualifiedTypeName name="java.util.concurrent.LinkedBlockingQueue"/>
+<fullyQualifiedTypeName name="java.util.concurrent.Executors"/>
+<fullyQualifiedTypeName name="java.net.ServerSocket"/>
+<fullyQualifiedTypeName name="util.ThreadManager"/>
+<fullyQualifiedTypeName name="java.lang.Runnable"/>
+<fullyQualifiedTypeName name="java.awt.List"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.net.Socket"/>
+<fullyQualifiedTypeName name="java.nio.channels.SocketChannel"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="server.ClientSocket"/>
+<fullyQualifiedTypeName name="javax.servlet.ServletContextListener"/>
+<fullyQualifiedTypeName name="server.ClientSocketIOListener"/>
+<fullyQualifiedTypeName name="com.corundumstudio.socketio.listener.DataListener"/>
+<fullyQualifiedTypeName name="server.ClientSocketIOListener.ChatObject"/>
+<fullyQualifiedTypeName name="bean.PushBean"/>
+<fullyQualifiedTypeName name="com.corundumstudio.socketio.Configuration"/>
+<fullyQualifiedTypeName name="com.corundumstudio.socketio.SocketIOServer"/>
+<fullyQualifiedTypeName name="com.corundumstudio.socketio.listener.ConnectListener"/>
+<fullyQualifiedTypeName name="com.corundumstudio.socketio.listener.DisconnectListener"/>
+<fullyQualifiedTypeName name="reactor.io.IO"/>
+<fullyQualifiedTypeName name="io.netty.channel.unix.Socket"/>
+<fullyQualifiedTypeName name="org.redisson.client.protocol.pubsub.Message"/>
+</qualifiedTypeNameHistroy>
