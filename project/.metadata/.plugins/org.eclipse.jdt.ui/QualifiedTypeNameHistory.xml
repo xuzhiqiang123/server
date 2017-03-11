@@ -2,8 +2,6 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
 <fullyQualifiedTypeName name="java.io.PrintWriter"/>
-<fullyQualifiedTypeName name="bean.Person"/>
-<fullyQualifiedTypeName name="com.alibaba.fastjson.JSON"/>
 <fullyQualifiedTypeName name="java.util.concurrent.ThreadPoolExecutor"/>
 <fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
@@ -31,4 +29,6 @@
 <fullyQualifiedTypeName name="reactor.io.IO"/>
 <fullyQualifiedTypeName name="io.netty.channel.unix.Socket"/>
 <fullyQualifiedTypeName name="org.redisson.client.protocol.pubsub.Message"/>
+<fullyQualifiedTypeName name="com.alibaba.fastjson.JSON"/>
+<fullyQualifiedTypeName name="bean.Person"/>
 </qualifiedTypeNameHistroy>
