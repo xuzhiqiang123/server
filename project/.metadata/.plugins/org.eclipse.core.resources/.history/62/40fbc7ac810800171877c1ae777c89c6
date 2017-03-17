@@ -1,0 +1,56 @@
+package test;
+
+import java.util.Iterator;
+import java.util.Set;
+import java.util.UUID;
+
+import com.corundumstudio.socketio.AuthorizationListener;
+import com.corundumstudio.socketio.Configuration;
+import com.corundumstudio.socketio.HandshakeData;
+import com.corundumstudio.socketio.SocketIOClient;
+import com.corundumstudio.socketio.SocketIOServer;
+import com.corundumstudio.socketio.listener.ConnectListener;
+import com.corundumstudio.socketio.listener.DisconnectListener;
+
+public class Demo {
+	public static void main(String[] args) {
+		Configuration config = new Configuration();
+		config.setHostname("192.168.121.115");
+		config.setPort(9092);
+		SocketIOServer server = new SocketIOServer(config);
+		System.out.println("--------------");
+		// 启动服务
+		server.start();
+		config.setAuthorizationListener(new AuthorizationListener() {
+			
+			@Override
+			public boolean isAuthorized(HandshakeData data) {
+				String token = data.getSingleUrlParam("token");
+				System.out.println("########");
+				System.out.println(token);
+				System.out.println("########");
+				return true;
+			}
+		});
+		server.addConnectListener(new ConnectListener() {
+			
+			@Override
+			public void onConnect(SocketIOClient client) {
+				System.out.println("连接成功");
+				HandshakeData data = client.getHandshakeData();
+				String token = data.getSingleUrlParam("token");
+				System.out.println(token);
+				/*client.sendEvent("msg1", "消息1");
+				client.sendEvent("msg2", "消息2");
+				client.sendEvent("message", "message");*/
+			}
+		});
+		server.addDisconnectListener(new DisconnectListener() {
+			
+			@Override
+			public void onDisconnect(SocketIOClient arg0) {
+				System.out.println("离线了");
+			}
+		});
+	}
+}

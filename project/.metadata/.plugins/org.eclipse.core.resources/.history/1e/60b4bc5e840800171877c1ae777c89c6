@@ -1,0 +1,31 @@
+package server;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.corundumstudio.socketio.SocketIOClient;
+
+public class ClientPushSocket {
+	
+	public static List<SocketIOClient> clients = new ArrayList<>();
+	
+	public static void addClient(SocketIOClient client){
+		clients.add(client);
+	}
+	
+	public static void removeClient(SocketIOClient client){
+		clients.remove(client);
+	}
+	
+	public static void sendTestData(String data){
+		if(clients.size() > 0){
+			sendStringToClint(clients.get(0), "test", data);
+		}
+	}
+	
+	public static void sendStringToClint(SocketIOClient client,String msgType,String data){
+		String[] arg1 = new String[]{data};
+		client.sendEvent(msgType, (Object[])arg1);
+	}
+
+}
