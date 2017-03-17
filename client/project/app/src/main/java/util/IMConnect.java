@@ -1,7 +1,6 @@
 package util;
 
 import android.content.Intent;
-import android.os.Handler;
 import android.util.Log;
 
 import com.github.nkzawa.emitter.Emitter;
@@ -19,59 +18,65 @@ import service.IMService;
  * Created by YYBJ on 2017/3/11.
  */
 
-public class IMConnect{
+public class IMConnect {
 
-    private static com.github.nkzawa.socketio.client.Socket mSocket;
+    private static Socket mSocket;
     private static final String TAG = "IMConnect";
 
     public static void connectIMServer() throws URISyntaxException {
-        if (mSocket != null){
+        Log.e(TAG, "connectIMServer");
+        if (mSocket != null && mSocket.connected()) {
+            return;
+        }
+        if (mSocket != null) {
             mSocket.off();
             mSocket.close();
-            while(mSocket.connected()){
-                Log.i(TAG, "wait for socket close !!");
-            }
-            mSocket = null;
         }
+        mSocket = null;
         //socket配置
         IO.Options opts = new IO.Options();
         opts.forceNew = true;
         opts.reconnection = false;
         opts.transports = new String[]{WebSocket.NAME};
-        mSocket = IO.socket(NetWorkConstant.URL_IM_SERVER,opts);
+        mSocket = IO.socket(NetWorkConstant.URL_IM_SERVER);
         setSocketListener();
     }
 
-    public static boolean serverConnected(){
-        if (mSocket != null && mSocket.connected()){
-            return true;
-        }
-        return false;
-    }
-
     private static void setSocketListener() {
+        Log.e(TAG,"setSocketListener");
+        //收到消息
+        mSocket.on(Socket.EVENT_MESSAGE, new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                for (int i = 0; i < args.length; i++) {
+                    Log.i(TAG, "receive message is: "+args[0].toString());
+                    handleMessage(args[0].toString());
+                }
+            }
+        });
+
         mSocket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
                 UIUtils.showToast("连接到服务器");
+                Log.i(TAG, "连接成功");
+                BroadCastUtil.sendHomeBroadcast(BroadCastUtil.HOME_BROADCAST_IM_CONNECT, new Intent());
             }
         });
 
         mSocket.on(Socket.EVENT_DISCONNECT, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
-                UIUtils.showToast("断开连接");
+                Log.i(TAG, "断开连接");
+                BroadCastUtil.sendHomeBroadcast(BroadCastUtil.HOME_BROADCAST_IM_DISCONNECT, new Intent());
             }
         });
+        mSocket.connect();
+    }
 
-        mSocket.on(Socket.EVENT_MESSAGE, new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                for (int i = 0; i < args.length; i++) {
-                    Log.i(TAG,args[0].toString());
-                }
-           }
-        });
+    //处理接收到信息
+    private static void handleMessage(String msg) {
+
     }
 
     /**
@@ -87,12 +92,12 @@ public class IMConnect{
             Log.i(TAG, "socket io polling service was already started ... ");
         } else {
             Log.i(TAG, "start socket io polling service ... ");
-            new Handler().postDelayed(new Runnable() {
+            UIUtils.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    PollingUtil.startPollingService(UIUtils.getContext(), 1 * 1000, IMService.class, "IMServer");
+                    PollingUtil.startPollingService(UIUtils.getContext(), 60 * 1000, IMService.class, "IMServer");
                 }
-            }, 1 * 1000);
+            }, 60 * 1000);
         }
     }
 }

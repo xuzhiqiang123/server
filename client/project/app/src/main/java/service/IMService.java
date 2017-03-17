@@ -6,8 +6,6 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.client.project.HomeActivity;
-
 import java.net.URISyntaxException;
 
 import util.IMConnect;
@@ -34,11 +32,10 @@ public class IMService extends Service {
     }
 
     @Override
-    public int onStartCommand(Intent intent,int flags, int startId) {
+    public int onStartCommand(Intent intent, int flags, int startId) {
         Log.i("IM", "onStartCommand: ");
-        Intent intent1 = new Intent(HomeActivity.HOME_ACTIVITY_BROADCAST_ACTION);
-        sendBroadcast(intent1);
-//        connectServer();
+//        BroadCastUtil.sendHomeBroadcast(BroadCastUtil.HOME_BROADCAST_DATA_TEST,new Intent());
+        connectServer();
         return START_STICKY;
     }
 
@@ -46,12 +43,10 @@ public class IMService extends Service {
         ThreadManager.getLongPool().execute(new Runnable() {
             @Override
             public void run() {
-                if (!IMConnect.serverConnected()){
-                    try {
-                        IMConnect.connectIMServer();
-                    } catch (URISyntaxException e) {
-                        e.printStackTrace();
-                    }
+                try {
+                    IMConnect.connectIMServer();
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
                 }
             }
         });

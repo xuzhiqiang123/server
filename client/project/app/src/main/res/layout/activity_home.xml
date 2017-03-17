@@ -1,26 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/C12"
-        android:gravity="center"
         >
-        <Button
-            android:id="@+id/home_start"
+        <ImageView
+            android:id="@+id/connect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="启动"
-            android:textColor="@color/C6"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/listnumber_notice"
+            android:visibility="gone"
             />
-        <Button
-            android:id="@+id/home_start1"
-            android:layout_width="wrap_content"
+        <view.CustomImageView
+            android:id="@+id/image"
+            android:layout_width="@dimen/d_60"
+            android:layout_height="@dimen/d_60"
+            android:layout_centerHorizontal="true"
+            android:background="@color/accent_material_light"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="启动"
-            android:textColor="@color/C6"
-            />
+            android:orientation="horizontal"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+            <Button
+                android:id="@+id/home_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="启动1"
+                android:textColor="@color/C6"
+                />
+            <Button
+                android:id="@+id/home_start1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="启动2"
+                android:textColor="@color/C6"
+                />
+        </LinearLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 </layout>
 
