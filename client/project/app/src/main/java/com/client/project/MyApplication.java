@@ -7,12 +7,15 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import bean.UseView;
+
 public class MyApplication extends Application {
 
     private final String TAG = this.getClass().getSimpleName();
     private static MyApplication mInstance;
     private static final byte[] sInstanceLock = new byte[0];
     private static List<Activity> activities;
+    private UseView useView;
 
     @Override
     public void onCreate() {
@@ -34,5 +37,13 @@ public class MyApplication extends Application {
         synchronized (sInstanceLock) {
             return mInstance;
         }
+    }
+
+    public UseView getUseView() {
+        return useView;
+    }
+
+    public void setUseView(UseView useView) {
+        this.useView = useView;
     }
 }
