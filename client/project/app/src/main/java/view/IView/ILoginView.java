@@ -1,11 +1,11 @@
 package view.IView;
 
-import bean.UseView;
+import response.LoginResponse;
 
 /**
  * Created by YYBJ on 2017/4/7.
  */
 
 public interface ILoginView {
-    void loginSucceed(UseView useView);
+    void loginSucceed(LoginResponse bean);
 }

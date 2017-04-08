@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;project&apos;" deleteContents="true" description="Delete resource &apos;project&apos;" element1="/project" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1488855918309"/>&#x0A;<refactoring comment="Delete resource &apos;socket.io-client&apos;" deleteContents="true" description="Delete resource &apos;socket.io-client&apos;" element1="/socket.io-client" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1488882199966"/>
-</session>

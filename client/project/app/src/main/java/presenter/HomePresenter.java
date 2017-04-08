@@ -18,7 +18,7 @@ import util.UIUtils;
 public class HomePresenter extends Presenter{
 
     public void testGet(){
-        ApiClient.get("/project/servlets/TestServlet", TestBean.class,this);
+        ApiClient.get("/project1/servlets/TestServlet", TestBean.class,this);
     }
 
     public void testPost(){

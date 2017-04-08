@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 import bean.UseView;
 import response.BaseResponse;
+import response.LoginResponse;
 import view.IView.ILoginView;
 
 /**
@@ -17,7 +18,7 @@ import view.IView.ILoginView;
 
 public class LoginPresenter extends Presenter {
 
-    public static final String LOGIN = "/project/servlets/login";
+    public static final String LOGIN = "/project1/servlets/Login";
     public static final String TAG = "LoginPresenter";
 
     private ILoginView mView;
@@ -36,16 +37,18 @@ public class LoginPresenter extends Presenter {
         params.put("city", useView.city);
         params.put("useIcon", useView.useIcon);
         params.put("auth", useView.auth);
-        ApiClient.post(LOGIN, params, UseView.class, this);
+        ApiClient.post(LOGIN, params, LoginResponse.class, this);
     }
 
     @Override
     public boolean onSuccess(String tag, BaseResponse response) {
-        if (super.onSuccess(tag, response)){
-            if (tag.equals(LOGIN) && response instanceof UseView){
-                UseView bean = (UseView) response;
-                Log.e(TAG,response.toString());
-                mView.loginSucceed(bean);
+        if (super.onSuccess(tag, response)) {
+            if (tag.equals(LOGIN) && response instanceof LoginResponse) {
+                LoginResponse bean = (LoginResponse) response;
+                Log.e(TAG, response.toString());
+                if (bean.getStatus() == 1) {
+                    mView.loginSucceed(bean);
+                }
             }
         }
         return super.onSuccess(tag, response);

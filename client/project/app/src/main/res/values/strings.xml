@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LoginDemo-ShareSDK</string>
+    <string name="app_name">智能大棚</string>
     <string name="sm_item_auth">ShareSDK授权demo</string>
 	<string name="not_yet_authorized">尚未授权</string>
 	<string name="close_info_dialog">关闭信息界面</string>

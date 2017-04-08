@@ -17,6 +17,7 @@ import login.LoginApi;
 import login.OnLoginListener;
 import login.UserInfo;
 import presenter.LoginPresenter;
+import response.LoginResponse;
 import util.SharePreferenceUtil;
 import util.StringUtils;
 import util.UIUtils;
@@ -117,10 +118,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     }
 
     @Override
-    public void loginSucceed(UseView useView) {
-        MyApplication.getInstance().setUseView(useView);
+    public void loginSucceed(LoginResponse bean) {
+        MyApplication.getInstance().setUseView(bean.useView);
         SharePreferenceUtil.saveBoolean(SharePreferenceUtil.FIRST_LOGIN, true);
-        SharePreferenceUtil.saveString(SharePreferenceUtil.LOGIN_USE_VIEW, JSON.toJSONString(useView));
+        SharePreferenceUtil.saveString(SharePreferenceUtil.LOGIN_USE_VIEW, JSON.toJSONString(bean.useView));
         startHomeActivity();
         finish();
     }
