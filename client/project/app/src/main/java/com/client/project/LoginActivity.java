@@ -18,6 +18,7 @@ import login.OnLoginListener;
 import login.UserInfo;
 import presenter.LoginPresenter;
 import response.LoginResponse;
+import util.IMConnect;
 import util.SharePreferenceUtil;
 import util.StringUtils;
 import util.UIUtils;
@@ -58,6 +59,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             if (!StringUtils.isEmpty(useView)) {
                 UseView use = JSON.parseObject(useView, UseView.class);
                 MyApplication.getInstance().setUseView(use);
+                IMConnect.startIMService();
                 UIUtils.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -123,6 +125,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         SharePreferenceUtil.saveBoolean(SharePreferenceUtil.FIRST_LOGIN, true);
         SharePreferenceUtil.saveString(SharePreferenceUtil.LOGIN_USE_VIEW, JSON.toJSONString(bean.useView));
         startHomeActivity();
+        IMConnect.startIMService();
         finish();
     }
 

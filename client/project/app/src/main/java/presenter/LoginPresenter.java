@@ -18,7 +18,7 @@ import view.IView.ILoginView;
 
 public class LoginPresenter extends Presenter {
 
-    public static final String LOGIN = "/project1/servlets/Login";
+    public static final String LOGIN = "/project/servlets/Login";
     public static final String TAG = "LoginPresenter";
 
     private ILoginView mView;

@@ -1,0 +1,33 @@
+<!-- <html>
+<body>
+<h2>Hello Word!</h2>
+<a href="servlets/Login?xxx=123&&yyy=789">GET</a>
+</body>
+</html> -->
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=uft-8" />
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>测试请求参数</h1>
+	注意href和action都是写的完整的名称:项目名和资源路径名 下面一句是get请求方式并在URL后面传值
+	<a href="servlets/Login">click here</a>
+	<hr />
+
+	<form action="servlets/Login" method="post">
+		account:<input type="text" name="username" /><br /> 
+		password:<input type="password" name="password" /><br /> 
+		sex:<input type="radio" name="sex" checked="checked" value="male">
+		male <input type="radio" name="sex" value="female">female<br /> 
+		interest:<input type="checkbox" name="hobby" value="eat" />
+		eat<input type="checkbox" name="hobby" value="sleep" />
+		sleep<input type="checkbox" name="hobby" value="programm" />
+		programm<br/><input type="submit" value="commit" />
+	</form>
+</body>
+</html>
+

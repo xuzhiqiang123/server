@@ -1,0 +1,40 @@
+package bean;
+
+import com.corundumstudio.socketio.SocketIOClient;
+
+public class PushClientBean {
+	
+	private String id;
+	private String passward;
+	private SocketIOClient client;
+	
+	public PushClientBean() {
+	}
+	
+	public PushClientBean(String id, String passward, SocketIOClient client) {
+		this.id = id;
+		this.passward = passward;
+		this.client = client;
+	}
+
+	public String getAccount() {
+		return id;
+	}
+	public void setAccount(String id) {
+		this.id = id;
+	}
+	public String getPassward() {
+		return passward;
+	}
+	public void setPassward(String passward) {
+		this.passward = passward;
+	}
+	public SocketIOClient getClient() {
+		return client;
+	}
+	public void setClient(SocketIOClient client) {
+		this.client = client;
+	}
+	
+	
+}

@@ -1,0 +1,44 @@
+package util;
+
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+import org.junit.After;
+import org.junit.Before;
+import bean.UseView;
+
+public class EnvironmentUtil {
+	
+	private SessionFactory sessionFactory;
+	private Session session;
+	private Transaction transaction;
+	
+	@Before
+	public void init(){
+		Configuration configuration = new Configuration().configure();
+		ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()  
+                .applySettings(configuration.getProperties()).build(); 
+		sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+		session = sessionFactory.openSession();
+		transaction = session.beginTransaction();
+	}
+	
+	@Test
+	public void saveOneMsg(){
+//		Environment environment = new Environment(38.5f,40.0f,87f,77,System.currentTimeMillis()); 
+		UseView useView = new UseView("123", "QQ", "json", "na", "5897", "879", "fdsajf", 3, System.currentTimeMillis());
+		session.save(useView);
+	}
+	
+	@After
+	public void destroy(){
+		transaction.commit();
+		session.close();
+		sessionFactory.close();
+	}
+	
+}
