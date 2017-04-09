@@ -1,11 +1,13 @@
 package com.client.project;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.alibaba.fastjson.JSON;
@@ -30,8 +32,8 @@ import view.IView.ILoginView;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener, ILoginView {
 
-    private Button qqLogin;
-    private Button weixinLogin;
+    private ImageView qqLogin;
+    private ImageView weixinLogin;
     private RelativeLayout loginLayout;
     private LoginPresenter mPresenter;
 
@@ -39,13 +41,19 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            //透明状态栏
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            //透明导航栏
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        }
         initView();
         mPresenter = new LoginPresenter(this);
     }
 
     private void initView() {
-        qqLogin = (Button) findViewById(R.id.qq_login);
-        weixinLogin = (Button) findViewById(R.id.weixin_login);
+        qqLogin = (ImageView) findViewById(R.id.qq_login);
+        weixinLogin = (ImageView) findViewById(R.id.weixin_login);
         loginLayout = (RelativeLayout) findViewById(R.id.login_layout);
         initEvent();
         handleData();

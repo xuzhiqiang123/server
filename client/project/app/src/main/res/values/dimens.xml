@@ -145,5 +145,6 @@
     <dimen name="regist_btn_regist_top">39dp</dimen>
     <dimen name="regist_third_notify_top">28dp</dimen>
     <dimen name="phone_mark_btn_bottom">75dp</dimen>
+    <dimen name="d_35">35dp</dimen>
 
 </resources>

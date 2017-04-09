@@ -4,10 +4,12 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.TouchDelegate;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.client.project.MyApplication;
@@ -20,18 +22,18 @@ public class UIUtils {
 
     public static Handler mHandle;
 
-    public static Context getContext(){
+    public static Context getContext() {
         return MyApplication.getInstance();
     }
 
-    public static Handler getHandle(){
-        if (mHandle == null){
+    public static Handler getHandle() {
+        if (mHandle == null) {
             mHandle = new Handler(Looper.getMainLooper());
         }
         return mHandle;
     }
 
-    public static boolean post(Runnable r){
+    public static boolean post(Runnable r) {
         return getHandle().post(r);
     }
 
@@ -50,8 +52,8 @@ public class UIUtils {
         return LayoutInflater.from(getContext()).inflate(resId, parent, false);
     }
 
-    public static boolean postDelayed(Runnable r,long delayed){
-        return getHandle().postDelayed(r,delayed);
+    public static boolean postDelayed(Runnable r, long delayed) {
+        return getHandle().postDelayed(r, delayed);
     }
 
     /**
@@ -61,7 +63,9 @@ public class UIUtils {
         return Looper.myLooper() == Looper.getMainLooper();
     }
 
-    /** 对toast的简易封装。线程安全，可以在非UI线程调用。 */
+    /**
+     * 对toast的简易封装。线程安全，可以在非UI线程调用。
+     */
     public static void showToastSafe(final String str) {
         if (isOnMainThread()) {
             showToast(str);
@@ -96,7 +100,9 @@ public class UIUtils {
         showToast(str, Toast.LENGTH_LONG);
     }
 
-    /** 扩大点击区域 */
+    /**
+     * 扩大点击区域
+     */
     public static void expandViewTouchDelegate(final View view, final int top,
                                                final int bottom, final int left, final int right) {
         ((View) view.getParent()).post(new Runnable() {
@@ -116,7 +122,10 @@ public class UIUtils {
             }
         });
     }
-    /** 恢复点击区域 */
+
+    /**
+     * 恢复点击区域
+     */
     public static void restoreViewTouchDelegate(final View view) {
         ((View) view.getParent()).post(new Runnable() {
             @Override
@@ -130,32 +139,61 @@ public class UIUtils {
             }
         });
     }
-    public static  void visibility(View... views){
-        if (views != null&&views.length>0) {
+
+    public static void visibility(View... views) {
+        if (views != null && views.length > 0) {
             for (View view : views) {
-                if(view.getVisibility()!=View.VISIBLE){
+                if (view.getVisibility() != View.VISIBLE) {
                     view.setVisibility(View.VISIBLE);
                 }
             }
         }
     }
-    public static  void invisibility(View... views){
-        if (views != null&&views.length>0) {
+
+    public static void invisibility(View... views) {
+        if (views != null && views.length > 0) {
             for (View view : views) {
-                if(view.getVisibility()!=View.INVISIBLE){
+                if (view.getVisibility() != View.INVISIBLE) {
                     view.setVisibility(View.INVISIBLE);
                 }
             }
         }
     }
-    public static void gone(View... views){
-        if (views != null&&views.length>0) {
+
+    public static void gone(View... views) {
+        if (views != null && views.length > 0) {
             for (View view : views) {
-                if(view.getVisibility()!=View.GONE){
+                if (view.getVisibility() != View.GONE) {
                     view.setVisibility(View.GONE);
                 }
             }
         }
+    }
+
+    /**
+     * 获得屏幕宽度
+     *
+     * @return
+     */
+    public static int getScreenWidth() {
+        WindowManager wm = (WindowManager) getContext()
+                .getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(outMetrics);
+        return outMetrics.widthPixels;
+    }
+
+    /**
+     * 获得屏幕高度
+     *
+     * @return
+     */
+    public static int getScreenHeight() {
+        WindowManager wm = (WindowManager) getContext()
+                .getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(outMetrics);
+        return outMetrics.heightPixels;
     }
 
 }

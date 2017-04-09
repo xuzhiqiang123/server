@@ -45,7 +45,7 @@ public class LoginPresenter extends Presenter {
         if (super.onSuccess(tag, response)) {
             if (tag.equals(LOGIN) && response instanceof LoginResponse) {
                 LoginResponse bean = (LoginResponse) response;
-                Log.e(TAG, response.toString());
+                Log.e(TAG, ((LoginResponse) response).useView.toString());
                 if (bean.getStatus() == 1) {
                     mView.loginSucceed(bean);
                 }
