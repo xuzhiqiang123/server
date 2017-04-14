@@ -1,6 +1,7 @@
 package util;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.os.Looper;
@@ -33,8 +34,31 @@ public class UIUtils {
         return mHandle;
     }
 
+    /**
+     * 获取资源
+     */
+    public static Resources getResources() {
+        return getContext().getResources();
+    }
+
     public static boolean post(Runnable r) {
         return getHandle().post(r);
+    }
+
+    /**
+     * dip转换px
+     */
+    public static int dip2px(int dip) {
+        final float scale = getContext().getResources().getDisplayMetrics().density;
+        return (int) (dip * scale + 0.5f);
+    }
+
+    /**
+     * pxz转换dip
+     */
+    public static int px2dip(int px) {
+        final float scale = getContext().getResources().getDisplayMetrics().density;
+        return (int) (px / scale + 0.5f);
     }
 
     /**

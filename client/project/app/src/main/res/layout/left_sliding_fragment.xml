@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
-    <LinearLayout
-        android:layout_width="match_parent"
+
+
+    <view.LeftSlidingView
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:background="#fff"
-        android:gravity="center_horizontal">
+        android:background="#FFF">
 
         <ImageView
             android:id="@+id/portrait"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/d_13"
-            />
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/d_50" />
 
         <TextView
             android:id="@+id/nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_13"
             android:text="昵称"
-            android:textColor="@color/C2"
-            android:layout_marginTop="@dimen/d_13"/>
+            android:textColor="@color/C2" />
+    </view.LeftSlidingView>
 
-    </LinearLayout>
 </layout>

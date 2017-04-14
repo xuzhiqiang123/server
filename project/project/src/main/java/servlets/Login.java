@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,7 +27,17 @@ public class Login extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Login----doPost");
+		
+		InputStream in = request.getInputStream();
+		byte[] b = new byte[1024];
+		int count = 0;
+		StringBuilder builder = new StringBuilder();
+		while((count = in.read(b)) > -1){
+			builder.append(new String(b,0,count,"utf-8"));
+		}
+		System.out.println(builder.toString());
+		
+		/*System.out.println("Login----doPost");
 		UseView useView = (UseView) ServletUtil.parseInputStream(request, UseView.class);
 		useView.setTime(System.currentTimeMillis());
 		System.out.println("Login---"+useView.toString());
@@ -38,12 +49,19 @@ public class Login extends HttpServlet{
 			System.out.println("save to database a client");
 		}else{
 			System.out.println("already have a client");
-		}
+		}*/
 	}
 	
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Login----doGet");
+		
+		System.out.println("uri="+request.getRequestURI());
+		System.out.println("urL="+request.getRequestURL());
+		System.out.println("Query="+request.getQueryString());
+		System.out.println("Method="+request.getMethod());
+		System.out.println(request.getParameter("id"));
+		System.out.println(request.getAttribute("nickname"));
 	}
 
 }

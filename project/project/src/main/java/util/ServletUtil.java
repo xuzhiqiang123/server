@@ -43,15 +43,6 @@ public class ServletUtil {
 		useView.setProvince(new String(request.getParameter("province").getBytes("iso-8859-1"), "utf-8"));
 		useView.setTime(Long.valueOf(request.getParameter("time")));
 		useView.setUseIcon(new String(request.getParameter("useIcon").getBytes("iso-8859-1"), "utf-8"));
-		/*useView.setId(request.getParameter("id"));
-		useView.setAuth(Integer.valueOf(request.getParameter("auth")));
-		useView.setCity(request.getParameter("city"));
-		useView.setGender(request.getParameter("gender"));
-		useView.setNickname(request.getParameter("nickname"));
-		useView.setPlatform(request.getParameter("platform"));
-		useView.setProvince(request.getParameter("province"));
-		useView.setTime(Long.valueOf(request.getParameter("time")));
-		useView.setUseIcon(request.getParameter("useIcon"));*/
 		return useView;
 	} 
 	
@@ -88,12 +79,15 @@ public class ServletUtil {
 	}
 	
 	public static void writeToClient(HttpServletResponse response, Map<String, Object> param) throws IOException {
+		response.setHeader("Content-type", "textml;charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		param.put("status", 1);
 		PrintWriter writer = response.getWriter();
 		String data = JSON.toJSONString(param);
 		System.out.println(data);
 		writer.print(data);
 		writer.flush();
+		writer.close();
 	}
 
 }

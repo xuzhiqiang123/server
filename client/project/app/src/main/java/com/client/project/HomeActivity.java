@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.View.OnClickListener;
 
@@ -23,6 +25,7 @@ public class HomeActivity extends BaseActivity implements OnClickListener{
     private HomePresenter mPresenter;
     private SlidingFragment slidingFragment;
     private HomeFragment homeFragment;
+    private Fragment currentFragment;
 
     private BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
@@ -45,15 +48,35 @@ public class HomeActivity extends BaseActivity implements OnClickListener{
         mBinding = (ActivityHomeBinding) setContentBinding(this,R.layout.activity_home);
         IntentFilter filter = new IntentFilter(HOME_ACTIVITY_BROADCAST_ACTION);
         registerReceiver(mReceiver,filter);
-        init();
+        setSelect(0);
+        initSlidingFragment();
         mPresenter = new HomePresenter();
     }
 
-    private void init() {
-        slidingFragment = new SlidingFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.left_sliding_layout,slidingFragment).commit();
-        homeFragment = new HomeFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.home_content,homeFragment).commit();
+    private void initSlidingFragment() {
+        SlidingFragment slidingFragment = new SlidingFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.left_sliding_layout,slidingFragment).commit();
+    }
+
+    private void setSelect(int select){
+        FragmentTransaction transition = getSupportFragmentManager().beginTransaction();
+        switch (select){
+            case 0:
+                if (homeFragment == null){
+                    homeFragment = new HomeFragment();
+                }
+                if (currentFragment != null){
+                    transition.hide(currentFragment);
+                }
+                if (homeFragment.isAdded()){
+                    transition.show(homeFragment);
+                }else {
+                    transition.add(R.id.home_content,homeFragment,"home");
+                }
+                transition.commit();
+                currentFragment = homeFragment;
+                break;
+        }
     }
 
     @Override

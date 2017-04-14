@@ -16,7 +16,7 @@
 	<a href="servlets/Login">click here</a>
 	<hr />
 
-	<form action="servlets/Login" method="post" >
+	<form action="servlets/Login" method="post" enctype="multipart/form-data">
 		id:<input type="text" name="id" value="34E7C9D859EAA926243CC75F69C6524E"/><br/>
 		nickname:<input type="text" name="nickname" value="忽如一夜春风来"/><br/>
 		platform:<input type="text" name="platform" value="QQ"/><br/>

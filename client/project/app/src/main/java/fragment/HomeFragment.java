@@ -27,7 +27,7 @@ public class HomeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.setContentView(getActivity(),R.layout.home_fragment);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.home_fragment, container, false);
         return mBinding.getRoot();
     }
 }
